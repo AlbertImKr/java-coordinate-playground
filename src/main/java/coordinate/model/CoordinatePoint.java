@@ -1,4 +1,4 @@
-package coordinate;
+package coordinate.model;
 
 public class CoordinatePoint {
     private final int x;

@@ -1,4 +1,4 @@
-package coordinate;
+package coordinate.model;
 
 import java.util.List;
 
@@ -11,8 +11,9 @@ public class CoordinateChecker {
         return coordinateString.matches(pattern);
     }
 
-    public boolean checkRange(List<Integer> list) {
+    public boolean checkRange(List<String> list) {
         return list.stream()
+                .map(Integer::valueOf)
                 .allMatch(value -> value >= MIN_VALUE && value <= MAX_VALUE);
     }
 }

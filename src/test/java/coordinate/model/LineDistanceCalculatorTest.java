@@ -1,8 +1,9 @@
-package coordinate;
+package coordinate.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class LineDistanceCalculatorTest {
@@ -13,7 +14,7 @@ public class LineDistanceCalculatorTest {
         CoordinatePoint coordinatePointA = new CoordinatePoint(1, 2);
         CoordinatePoint coordinatePointB = new CoordinatePoint(3, 4);
 
-        assertThat(lineDistanceCalculator.calculateTwoPointDistance(coordinatePointA, coordinatePointB))
+        assertThat(lineDistanceCalculator.calculateTwoPointDistance(List.of(coordinatePointA, coordinatePointB)))
                 .isEqualTo(2.8284, offset(0.000099));
     }
 }
