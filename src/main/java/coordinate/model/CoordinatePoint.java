@@ -19,4 +19,29 @@ class CoordinatePoint {
             throw new IllegalArgumentException("좌표는 1이상 24이하인 수여야 합니다.");
         }
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CoordinatePoint)) {
+            return false;
+        }
+
+        CoordinatePoint that = (CoordinatePoint) o;
+
+        if (pointX != that.pointX) {
+            return false;
+        }
+        return pointY == that.pointY;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = pointX;
+        result = 31 * result + pointY;
+        return result;
+    }
 }
