@@ -3,7 +3,7 @@ package coordinate.model;
 import java.util.List;
 
 public class WidthOfTriangleCalculator {
-    public double calculate(List<CoordinatePoint> coordinatePoints) {
+    public static double calculate(List<CoordinatePoint> coordinatePoints) {
         CoordinatePoint coordinatePointA = coordinatePoints.get(0);
         CoordinatePoint coordinatePointB = coordinatePoints.get(1);
         CoordinatePoint coordinatePointC = coordinatePoints.get(2);
@@ -13,7 +13,8 @@ public class WidthOfTriangleCalculator {
         double line2 = lineDistanceCalculator.calculateTwoPointDistance(List.of(coordinatePointA, coordinatePointC));
         double line3 = lineDistanceCalculator.calculateTwoPointDistance(List.of(coordinatePointB, coordinatePointC));
 
-        return line1 + line2 + line3;
+        double s = (line1 + line2 + line3) / 2;
+        return Math.sqrt(s * (s - line1) * (s - line2) * (s - line3));
 
     }
 }

@@ -5,33 +5,43 @@ import coordinate.model.CoordinatePoint;
 import coordinate.model.CoordinateSolution;
 import coordinate.model.Changer;
 import coordinate.view.InputView;
+import java.util.Collections;
 import java.util.List;
 
 public class CoordinateController {
-    private InputView inputView = new InputView();
-    private CoordinateChecker coordinateChecker = new CoordinateChecker();
-    private Changer changer = new Changer();
-    private CoordinateSolution coordinateSolution = new CoordinateSolution();
-    private OutView outView = new OutView();
-    void start(){
+    private static final InputView inputView = new InputView();
+    private final CoordinateChecker coordinateChecker = new CoordinateChecker();
+    private final Changer changer = new Changer();
+    private final CoordinateSolution coordinateSolution = new CoordinateSolution();
+    private final OutView outView = new OutView();
+    public void start(){
         String requestInput = inputView.requestInput();
-        check(requestInput);
+        List<List<String>> coordinateLists = check(requestInput);
+        if (coordinateLists.equals(Collections.emptyList())){
+            start();
+            return;
+        }
+        resolve(coordinateLists);
     }
 
-    private void check(String requestInput) {
-        try {
-            if (!coordinateChecker.checkType(requestInput)) {
-                throw new IllegalArgumentException("입력 타입이 맞지 않습니다.");
-            }
-            List<List<String>> CoordinateLists = changer.stringToList(requestInput);
-            if (!CoordinateLists.stream().allMatch(coordinateChecker::checkRange)){
-                throw new IllegalArgumentException("입력 범위을 넘었습니다.");
-            }
-            resolve(CoordinateLists);
-        } catch (Exception e) {
-            e.printStackTrace();
-            start();
+    private List<List<String>> check(String requestInput) {
+
+        requestInput = replaceBlank(requestInput);
+        if (!coordinateChecker.checkType(requestInput)) {
+            System.out.println("입력 타입이 맞지 않습니다.");
+            return Collections.emptyList();
         }
+        List<List<String>> coordinateLists = changer.stringToList(requestInput);
+        if (!coordinateLists.stream().allMatch(coordinateChecker::checkRange)){
+            System.out.println("입력 범위을 넘었습니다.");
+            return Collections.emptyList();
+        }
+        return coordinateLists;
+
+    }
+
+    private String replaceBlank(String requestInput) {
+        return requestInput.replaceAll(" ", "");
     }
 
     private void resolve(List<List<String>> CoordinateLists) {

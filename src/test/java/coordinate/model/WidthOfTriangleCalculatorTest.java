@@ -8,13 +8,12 @@ import org.junit.jupiter.api.Test;
 public class WidthOfTriangleCalculatorTest {
 
     @Test
-    void 삼각형면적_구하기() {
-        WidthOfTriangleCalculator widthOfTriangleCalculator = new WidthOfTriangleCalculator();
+    void 삼각형_넓이_구하기() {
         CoordinatePoint coordinatePointA = new CoordinatePoint(10, 10);
-        CoordinatePoint coordinatePointB = new CoordinatePoint(14, 10);
-        CoordinatePoint coordinatePointC = new CoordinatePoint(20, 8);
+        CoordinatePoint coordinatePointB = new CoordinatePoint(15, 10);
+        CoordinatePoint coordinatePointC = new CoordinatePoint(10, 15);
 
-        assertThat(widthOfTriangleCalculator.calculate(List.of(coordinatePointA, coordinatePointB, coordinatePointC)))
-                .isEqualTo(29);
+        assertThat(WidthOfTriangleCalculator.calculate(List.of(coordinatePointA, coordinatePointB, coordinatePointC)))
+                .isEqualTo(12.5);
     }
 }
