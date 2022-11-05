@@ -30,12 +30,12 @@ class ValidatorTest {
     void 좌표_수량_유효성() {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC))).isInstanceOf(
-                IllegalArgumentException.class).hasMessage(SIZE_ERROR_FRONT+4+SIZE_ERROR_END);
+                IllegalArgumentException.class).hasMessage(SIZE_ERROR_FRONT + 4 + SIZE_ERROR_END);
 
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC, coordinatePointD,
                         new CoordinatePoint(1, 5)))).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(SIZE_ERROR_FRONT+4+SIZE_ERROR_END);
+                .hasMessage(SIZE_ERROR_FRONT + 4 + SIZE_ERROR_END);
 
         assertThatCode(() -> new RectangularAreaCalculator(List.of(coordinatePointA, coordinatePointB, coordinatePointC,
                 coordinatePointD))).doesNotThrowAnyException();

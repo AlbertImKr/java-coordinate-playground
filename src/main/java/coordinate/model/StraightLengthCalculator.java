@@ -11,7 +11,6 @@ public class StraightLengthCalculator implements Area {
         this.coordinatePoints = coordinatePoints;
     }
 
-
     public double reportResult() {
         CoordinatePoint coordinatePointA = coordinatePoints.get(0);
         CoordinatePoint coordinatePointB = coordinatePoints.get(1);

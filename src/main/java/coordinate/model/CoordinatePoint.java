@@ -26,7 +26,7 @@ public class CoordinatePoint {
     }
 
     public double reportStraightLength(CoordinatePoint coordinatePointB) {
-        return coordinatePointB.reportStraightLength(pointX,pointY);
+        return coordinatePointB.reportStraightLength(pointX, pointY);
     }
 
     private double reportStraightLength(int otherPointX, int otherPointY) {
@@ -50,7 +50,6 @@ public class CoordinatePoint {
     public int getPointY() {
         return pointY;
     }
-
 
 
     @Override

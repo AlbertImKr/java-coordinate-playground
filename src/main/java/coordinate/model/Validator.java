@@ -22,7 +22,7 @@ class Validator {
     }
 
     private static void validateSize(List<CoordinatePoint> coordinatePoints, int size) {
-        validate(coordinatePoints.size() != size, SIZE_ERROR_FRONT+size+SIZE_ERROR_END);
+        validate(coordinatePoints.size() != size, SIZE_ERROR_FRONT + size + SIZE_ERROR_END);
     }
 
 

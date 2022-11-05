@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
-public class RectangularAreaCalculator implements Area{
+public class RectangularAreaCalculator implements Area {
 
     public static final int SIZE = 4;
     public static final String TYPE_ERROR = "직사각형이 아닙니다.";
@@ -15,10 +15,11 @@ public class RectangularAreaCalculator implements Area{
     private final List<CoordinatePoint> rectangularCoordinatePoints;
 
     public RectangularAreaCalculator(List<CoordinatePoint> coordinatePoints) {
-        Validator.validate(coordinatePoints,SIZE);
+        Validator.validate(coordinatePoints, SIZE);
         validateType(coordinatePoints);
         this.rectangularCoordinatePoints = coordinatePoints;
     }
+
     private static void validateType(List<CoordinatePoint> coordinatePoints) {
         long countX = coordinatePoints.stream()
                 .map(CoordinatePoint::getPointX)
