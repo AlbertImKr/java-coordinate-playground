@@ -43,5 +43,16 @@ class RectangularAreaCalculatorTest {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointA, coordinatePointC))).isInstanceOf(
                 IllegalArgumentException.class).hasMessage("중복된 좌표가 있습니다.");
+
+        assertThatCode(() -> new RectangularAreaCalculator(List.of(coordinatePointA, coordinatePointB, coordinatePointC,
+                coordinatePointD))).doesNotThrowAnyException();
+    }
+
+
+    @Test
+    void 직사각형인지_확인() {
+        assertThatThrownBy(() -> new RectangularAreaCalculator(
+                List.of(coordinatePointA, coordinatePointB, coordinatePointC, new CoordinatePoint(3, 4))))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("직사각형이 아닙니다.");
     }
 }
