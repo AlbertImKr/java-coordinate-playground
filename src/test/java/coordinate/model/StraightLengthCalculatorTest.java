@@ -17,7 +17,7 @@ class StraightLengthCalculatorTest {
     List<CoordinatePoint> coordinatePoints = new ArrayList<>();
 
     @BeforeEach
-    void setCoordinatePoints(){
+    void setCoordinatePoints() {
         coordinatePointA = new CoordinatePoint(10, 10);
         coordinatePointB = new CoordinatePoint(2, 10);
         coordinatePoints.add(coordinatePointA);
@@ -40,7 +40,20 @@ class StraightLengthCalculatorTest {
         assertThat(straightLengthCalculatorA.reportResult()).isEqualTo(8);
 
         StraightLengthCalculator straightLengthCalculatorB =
-                new StraightLengthCalculator(List.of(coordinatePointA,new CoordinatePoint(14,15)));
-        assertThat(straightLengthCalculatorB.reportResult()).isEqualTo(6.403124,offset(0.00000099));
+                new StraightLengthCalculator(List.of(coordinatePointA, new CoordinatePoint(14, 15)));
+        assertThat(straightLengthCalculatorB.reportResult()).isEqualTo(6.403124, offset(0.00000099));
+    }
+
+    @Test
+    void 두점_인지_확인한다() {
+        assertThatThrownBy(
+                () -> new StraightLengthCalculator(List.of(coordinatePointA, coordinatePointA, coordinatePointA)))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 2개이여야 한다.");
+        assertThatThrownBy(
+                () -> new StraightLengthCalculator(List.of(coordinatePointA)))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 2개이여야 한다.");
+
+        assertThatCode(() -> new StraightLengthCalculator(coordinatePoints))
+                .doesNotThrowAnyException();
     }
 }

@@ -12,7 +12,11 @@ class StraightLengthCalculator {
     }
 
     private void validate(List<CoordinatePoint> coordinatePoints) {
-        List<CoordinatePoint> distinctCoordinatePoints = coordinatePoints.stream().distinct().collect(Collectors.toList());
+        if (coordinatePoints.size() != 2) {
+            throw new IllegalArgumentException("좌표가 2개이여야 한다.");
+        }
+        List<CoordinatePoint> distinctCoordinatePoints = coordinatePoints.stream().distinct()
+                .collect(Collectors.toList());
         if (!distinctCoordinatePoints.equals(coordinatePoints)) {
             throw new IllegalArgumentException("두 좌표가 서로 달아랴 한다.");
         }
