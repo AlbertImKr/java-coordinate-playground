@@ -54,18 +54,20 @@ class CoordinatePoint {
     }
 
     public boolean isSameX(CoordinatePoint otherCoordinatePoint) {
-        return otherCoordinatePoint.isSameX(pointX);
+        return pointX == otherCoordinatePoint.pointX;
     }
 
-    private boolean isSameX(int otherPointX) {
-        return pointX == otherPointX;
+
+    public boolean isSameY(CoordinatePoint otherCoordinatePoint) {
+        return pointY == otherCoordinatePoint.pointY;
     }
 
-    public boolean isSameY(CoordinatePoint otherCoordinatePointB) {
-        return otherCoordinatePointB.isSameY(pointY);
+
+    public int getPointX() {
+        return pointX;
     }
 
-    private boolean isSameY(int otherPointY) {
-        return pointY == otherPointY;
+    public int getPointY() {
+        return pointY;
     }
 }
