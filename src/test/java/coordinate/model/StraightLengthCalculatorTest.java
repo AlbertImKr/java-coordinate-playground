@@ -1,8 +1,6 @@
 package coordinate.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.offset;
 
 import java.util.ArrayList;
@@ -25,15 +23,6 @@ class StraightLengthCalculatorTest {
     }
 
     @Test
-    void 두좌표가_서로_달아야_한다() {
-        assertThatThrownBy(() -> new StraightLengthCalculator(List.of(coordinatePointA, coordinatePointA)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("중복된 좌표가 있습니다.");
-
-        assertThatCode(() -> new StraightLengthCalculator(coordinatePoints))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
     void 두좌표_사이의_직선거리를_구한다() {
         StraightLengthCalculator straightLengthCalculatorA =
                 new StraightLengthCalculator(coordinatePoints);
@@ -42,18 +31,5 @@ class StraightLengthCalculatorTest {
         StraightLengthCalculator straightLengthCalculatorB =
                 new StraightLengthCalculator(List.of(coordinatePointA, new CoordinatePoint(14, 15)));
         assertThat(straightLengthCalculatorB.reportResult()).isEqualTo(6.403124, offset(0.00000099));
-    }
-
-    @Test
-    void 두점_인지_확인한다() {
-        assertThatThrownBy(
-                () -> new StraightLengthCalculator(List.of(coordinatePointA, coordinatePointA, coordinatePointA)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 2개이여야 한다.");
-        assertThatThrownBy(
-                () -> new StraightLengthCalculator(List.of(coordinatePointA)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 2개이여야 한다.");
-
-        assertThatCode(() -> new StraightLengthCalculator(coordinatePoints))
-                .doesNotThrowAnyException();
     }
 }
