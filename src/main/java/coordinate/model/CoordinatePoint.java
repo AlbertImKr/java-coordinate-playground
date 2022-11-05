@@ -4,6 +4,7 @@ class CoordinatePoint {
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 24;
+    public static final String Range_ERROR = "좌표는 1이상 24이하인 수여야 합니다.";
     private final int pointX;
     private final int pointY;
 
@@ -15,34 +16,13 @@ class CoordinatePoint {
     }
 
     private void validate(int pointSingleValue) {
+        validateRange(pointSingleValue);
+    }
+
+    private static void validateRange(int pointSingleValue) {
         if (pointSingleValue < MIN_VALUE || pointSingleValue > MAX_VALUE) {
-            throw new IllegalArgumentException("좌표는 1이상 24이하인 수여야 합니다.");
+            throw new IllegalArgumentException(Range_ERROR);
         }
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof CoordinatePoint)) {
-            return false;
-        }
-
-        CoordinatePoint that = (CoordinatePoint) o;
-
-        if (pointX != that.pointX) {
-            return false;
-        }
-        return pointY == that.pointY;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = pointX;
-        result = 31 * result + pointY;
-        return result;
     }
 
     public double reportStraightLength(CoordinatePoint coordinatePointB) {
@@ -69,5 +49,31 @@ class CoordinatePoint {
 
     public int getPointY() {
         return pointY;
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CoordinatePoint)) {
+            return false;
+        }
+
+        CoordinatePoint that = (CoordinatePoint) o;
+
+        if (pointX != that.pointX) {
+            return false;
+        }
+        return pointY == that.pointY;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = pointX;
+        result = 31 * result + pointY;
+        return result;
     }
 }
