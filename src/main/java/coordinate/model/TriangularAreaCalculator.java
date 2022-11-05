@@ -2,7 +2,7 @@ package coordinate.model;
 
 import java.util.List;
 
-class TriangularAreaCalculator implements Area {
+public class TriangularAreaCalculator implements Area {
 
     public static final int SIZE = 3;
     public static final int FIRST_POINT_INDEX = 0;

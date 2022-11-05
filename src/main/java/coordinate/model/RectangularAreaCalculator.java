@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
-class RectangularAreaCalculator implements Area{
+public class RectangularAreaCalculator implements Area{
 
     public static final int SIZE = 4;
     public static final String TYPE_ERROR = "직사각형이 아닙니다.";

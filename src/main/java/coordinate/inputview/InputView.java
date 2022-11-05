@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-class InputView {
+public class InputView {
     public static final Scanner scanner = new Scanner(System.in);
     public static final String START_STRING = "좌표를 입력하세요.";
 
-    void requestInput() {
+    public static void requestInput() {
         System.out.println(START_STRING);
         String inputs = scanner.nextLine();
         inputs = inputs.replaceAll(" ", "");
