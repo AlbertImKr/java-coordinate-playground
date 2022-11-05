@@ -34,4 +34,24 @@ public class CoordinatePointTest {
         assertThat(coordinatePointA.reportStraightLength(coordinatePointC))
                 .isEqualTo(6.403124,offset(0.00000099));
     }
+
+    @Test
+    void 같은_x를_가자고_있는지(){
+        CoordinatePoint coordinatePointA = new CoordinatePoint(14, 15);
+        CoordinatePoint coordinatePointB = new CoordinatePoint(14, 10);
+        assertThat(coordinatePointA.isSameX(coordinatePointB)).isTrue();
+
+        CoordinatePoint coordinatePointC = new CoordinatePoint(13, 10);
+        assertThat(coordinatePointA.isSameX(coordinatePointC)).isFalse();
+    }
+
+    @Test
+    void 같은_y를_가자고_있는지(){
+        CoordinatePoint coordinatePointA = new CoordinatePoint(14, 15);
+        CoordinatePoint coordinatePointB = new CoordinatePoint(12, 15);
+        assertThat(coordinatePointA.isSameY(coordinatePointB)).isTrue();
+
+        CoordinatePoint coordinatePointC = new CoordinatePoint(13, 13);
+        assertThat(coordinatePointA.isSameY(coordinatePointC)).isFalse();
+    }
 }

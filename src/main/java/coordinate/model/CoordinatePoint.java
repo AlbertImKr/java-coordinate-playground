@@ -52,4 +52,20 @@ class CoordinatePoint {
     private double reportStraightLength(int otherPointX, int otherPointY) {
         return Math.sqrt(Math.pow(pointX - otherPointX, 2) + Math.pow(pointY - otherPointY, 2));
     }
+
+    public boolean isSameX(CoordinatePoint otherCoordinatePoint) {
+        return otherCoordinatePoint.isSameX(pointX);
+    }
+
+    private boolean isSameX(int otherPointX) {
+        return pointX == otherPointX;
+    }
+
+    public boolean isSameY(CoordinatePoint otherCoordinatePointB) {
+        return otherCoordinatePointB.isSameY(pointY);
+    }
+
+    private boolean isSameY(int otherPointY) {
+        return pointY == otherPointY;
+    }
 }
