@@ -4,11 +4,9 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
-class RectangularAreaCalculator {
+class RectangularAreaCalculator implements Area{
 
     public static final int SIZE = 4;
-    public static final String SIZE_ERROR = "좌표의 수가 4개이여야 한다.";
-    public static final String REPEAT_ERROR = "중복된 좌표가 있습니다.";
     public static final String TYPE_ERROR = "직사각형이 아닙니다.";
     public static final int POINT_COUNT = 2;
     public static final int START_NUMBER = 0;
@@ -17,27 +15,10 @@ class RectangularAreaCalculator {
     private final List<CoordinatePoint> rectangularCoordinatePoints;
 
     public RectangularAreaCalculator(List<CoordinatePoint> coordinatePoints) {
-        validate(coordinatePoints);
+        Validator.validate(coordinatePoints,SIZE);
+        validateType(coordinatePoints);
         this.rectangularCoordinatePoints = coordinatePoints;
     }
-
-    private void validate(List<CoordinatePoint> coordinatePoints) {
-        validateSize(coordinatePoints);
-        validateRepeat(coordinatePoints);
-        validateType(coordinatePoints);
-    }
-
-    private static void validateRepeat(List<CoordinatePoint> coordinatePoints) {
-        List<CoordinatePoint> distinctCoordinatePoints = coordinatePoints.stream()
-                .distinct()
-                .collect(toList());
-        validate(!distinctCoordinatePoints.equals(coordinatePoints), REPEAT_ERROR);
-    }
-
-    private static void validateSize(List<CoordinatePoint> coordinatePoints) {
-        validate(coordinatePoints.size() != SIZE, SIZE_ERROR);
-    }
-
     private static void validateType(List<CoordinatePoint> coordinatePoints) {
         long countX = coordinatePoints.stream()
                 .map(CoordinatePoint::getPointX)
@@ -47,14 +28,9 @@ class RectangularAreaCalculator {
                 .map(CoordinatePoint::getPointY)
                 .distinct().count();
 
-        validate(countX != POINT_COUNT && countY != POINT_COUNT, TYPE_ERROR);
+        Validator.validate(countX != POINT_COUNT && countY != POINT_COUNT, TYPE_ERROR);
     }
 
-    private static void validate(boolean coordinatePoints, String errorMessage) {
-        if (coordinatePoints) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
 
     public double reportResult() {
         CoordinatePoint coordinatePointA = rectangularCoordinatePoints.get(START_NUMBER);
