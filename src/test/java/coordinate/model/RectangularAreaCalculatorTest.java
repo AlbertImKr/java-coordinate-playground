@@ -1,5 +1,6 @@
 package coordinate.model;
 
+import static coordinate.model.RectangularAreaCalculator.TYPE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -26,7 +27,7 @@ class RectangularAreaCalculatorTest {
     void 직사각형인지_확인() {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC, new CoordinatePoint(3, 4))))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("직사각형이 아닙니다.");
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(TYPE_ERROR);
     }
 
     @Test

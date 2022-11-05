@@ -1,5 +1,8 @@
 package coordinate.model;
 
+import static coordinate.model.Validator.REPEAT_ERROR;
+import static coordinate.model.Validator.SIZE_ERROR_END;
+import static coordinate.model.Validator.SIZE_ERROR_FRONT;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,12 +30,12 @@ class ValidatorTest {
     void 좌표_수량_유효성() {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC))).isInstanceOf(
-                IllegalArgumentException.class).hasMessage("좌표의 수가 4개이여야 한다.");
+                IllegalArgumentException.class).hasMessage(SIZE_ERROR_FRONT+4+SIZE_ERROR_END);
 
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC, coordinatePointD,
                         new CoordinatePoint(1, 5)))).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("좌표의 수가 4개이여야 한다.");
+                .hasMessage(SIZE_ERROR_FRONT+4+SIZE_ERROR_END);
 
         assertThatCode(() -> new RectangularAreaCalculator(List.of(coordinatePointA, coordinatePointB, coordinatePointC,
                 coordinatePointD))).doesNotThrowAnyException();
@@ -42,7 +45,7 @@ class ValidatorTest {
     void 좌표가_중복_확인한다() {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointA, coordinatePointC))).isInstanceOf(
-                IllegalArgumentException.class).hasMessage("중복된 좌표가 있습니다.");
+                IllegalArgumentException.class).hasMessage(REPEAT_ERROR);
 
         assertThatCode(() -> new RectangularAreaCalculator(List.of(coordinatePointA, coordinatePointB, coordinatePointC,
                 coordinatePointD))).doesNotThrowAnyException();

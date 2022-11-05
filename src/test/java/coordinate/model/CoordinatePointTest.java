@@ -1,5 +1,6 @@
 package coordinate.model;
 
+import static coordinate.model.CoordinatePoint.Range_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,9 +13,9 @@ public class CoordinatePointTest {
     @Test
     void 좌표의_값에_대한_제한() {
         assertThatThrownBy(() -> new CoordinatePoint(25, 1)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("좌표는 1이상 24이하인 수여야 합니다.");
+                .hasMessage(Range_ERROR);
         assertThatThrownBy(() -> new CoordinatePoint(0, 24)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("좌표는 1이상 24이하인 수여야 합니다.");
+                .hasMessage(Range_ERROR);
         assertThatCode(() -> new CoordinatePoint(1, 24)).doesNotThrowAnyException();
     }
 
