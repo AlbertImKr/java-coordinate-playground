@@ -1,5 +1,6 @@
 package coordinate.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -44,6 +45,12 @@ class TriangularAreaCalculatorTest {
 
         assertThatCode(() -> new TriangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC))).doesNotThrowAnyException();
+    }
 
+    @Test
+    void 삼각형_면적_구하기(){
+        TriangularAreaCalculator triangularAreaCalculator = new TriangularAreaCalculator(
+                List.of(coordinatePointA, coordinatePointB, coordinatePointC));
+        assertThat(triangularAreaCalculator.reportResult()).isEqualTo(12.5);
     }
 }
