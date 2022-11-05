@@ -27,7 +27,7 @@ class StraightLengthCalculatorTest {
     @Test
     void 두좌표가_서로_달아야_한다() {
         assertThatThrownBy(() -> new StraightLengthCalculator(List.of(coordinatePointA, coordinatePointA)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("두 좌표가 서로 달아랴 한다.");
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("중복된 좌표가 있습니다.");
 
         assertThatCode(() -> new StraightLengthCalculator(coordinatePoints))
                 .doesNotThrowAnyException();

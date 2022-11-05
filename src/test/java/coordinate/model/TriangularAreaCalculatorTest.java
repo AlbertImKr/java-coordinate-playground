@@ -22,7 +22,7 @@ class TriangularAreaCalculatorTest {
     }
 
     @Test
-    void 삼점_인지_확인한다() {
+    void 삼점_인지_확인() {
         assertThatThrownBy(() -> new TriangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC, new CoordinatePoint(4, 5))))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 3개이여야 합니다.");
@@ -30,6 +30,17 @@ class TriangularAreaCalculatorTest {
         assertThatThrownBy(() -> new TriangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB)))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("좌표가 3개이여야 합니다.");
+
+        assertThatCode(() -> new TriangularAreaCalculator(
+                List.of(coordinatePointA, coordinatePointB, coordinatePointC))).doesNotThrowAnyException();
+
+    }
+
+    @Test
+    void 중복_점_확인(){
+        assertThatThrownBy(() -> new TriangularAreaCalculator(
+                List.of(coordinatePointA, coordinatePointB,coordinatePointB)))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("중복된 좌표가 있습니다.");
 
         assertThatCode(() -> new TriangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC))).doesNotThrowAnyException();
