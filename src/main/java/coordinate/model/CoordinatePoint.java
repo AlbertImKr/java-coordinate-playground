@@ -44,4 +44,12 @@ class CoordinatePoint {
         result = 31 * result + pointY;
         return result;
     }
+
+    public double reportStraightLength(CoordinatePoint coordinatePointB) {
+        return coordinatePointB.reportStraightLength(pointX,pointY);
+    }
+
+    private double reportStraightLength(int otherPointX, int otherPointY) {
+        return Math.sqrt(Math.pow(pointX - otherPointX, 2) + Math.pow(pointY - otherPointY, 2));
+    }
 }

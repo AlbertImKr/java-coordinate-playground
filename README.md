@@ -26,6 +26,7 @@
 1. 좌표(CoordinatePoint)
    1. X, Y 모두 1~24까지 제한기능 , 초과 IllegalArgumentException 예외 처리 
    2. 같은 좌표를 가지면 같아야 한다.
+   3. 두점 사이의 거리 구하는 기능.
 2. 직선길이구하기(StraightLengthCalculator)
    1. 두 좌표서로 다른지 확인한다. 아닐시 예외 처리
    2. 직선인 경우는 두 점 사이 거리를 계산해서 출력한다
