@@ -1,6 +1,6 @@
 package coordinate.model;
 
-class CoordinatePoint {
+public class CoordinatePoint {
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 24;

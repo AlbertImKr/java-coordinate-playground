@@ -2,7 +2,7 @@ package coordinate.model;
 
 import java.util.List;
 
-class StraightLengthCalculator implements Area {
+public class StraightLengthCalculator implements Area {
     public static final int SIZE = 2;
     private final List<CoordinatePoint> coordinatePoints;
 
