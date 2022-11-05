@@ -1,5 +1,6 @@
 package coordinate.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -54,5 +55,12 @@ class RectangularAreaCalculatorTest {
         assertThatThrownBy(() -> new RectangularAreaCalculator(
                 List.of(coordinatePointA, coordinatePointB, coordinatePointC, new CoordinatePoint(3, 4))))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage("직사각형이 아닙니다.");
+    }
+
+    @Test
+    void 직사각형_면적(){
+        RectangularAreaCalculator rectangularAreaCalculator = new RectangularAreaCalculator(
+                List.of(coordinatePointA, coordinatePointB, coordinatePointC, coordinatePointD));
+        assertThat(rectangularAreaCalculator.reportResult()).isEqualTo(25);
     }
 }
